@@ -2,7 +2,7 @@ class PerformanceItem {
   final int ID;
   final String Label;
   final String ChartPeriodCode;
-  final int ChangePercent;
+  final double ChangePercent;
 
   PerformanceItem(
       {required this.ID,

@@ -13,19 +13,40 @@ class PerformanceWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(item.Label),
-        LinearPercentIndicator(
-          width: 150,
-          percent: item.ChangePercent.toDouble().abs(),
-          backgroundColor: Colors.white,
-          progressColor: Colors.green[800],
-        ),
+        item.ChangePercent > 0
+            ? LinearPercentIndicator(
+                width: 150,
+                lineHeight: 25,
+                percent: item.ChangePercent > 100
+                    ? double.parse((1).toStringAsFixed(2))
+                    : double.parse(
+                        (item.ChangePercent.abs() / 100).toStringAsFixed(2)),
+                backgroundColor: Colors.white,
+                progressColor: Colors.green[800],
+              )
+            : LinearPercentIndicator(
+                width: 150,
+                lineHeight: 25,
+                percent: item.ChangePercent > 100
+                    ? double.parse((1).toStringAsFixed(2))
+                    : double.parse(
+                        (item.ChangePercent.abs() / 100).toStringAsFixed(2)),
+                backgroundColor: Colors.white,
+                progressColor: Colors.red[800],
+              ),
         item.ChangePercent > 0
             ? Text(
-                item.ChangePercent.toDouble().toString() + "%",
+                "🔺" +
+                    double.parse((item.ChangePercent.abs()).toStringAsFixed(2))
+                        .toString() +
+                    "%",
                 style: const TextStyle(color: Colors.green),
               )
             : Text(
-                item.ChangePercent.toDouble().toString() + "%",
+                "🔻" +
+                    double.parse((item.ChangePercent.abs()).toStringAsFixed(2))
+                        .toString() +
+                    "%",
                 style: const TextStyle(color: Colors.red),
               )
       ],
